@@ -1,1 +1,1 @@
-# potato-study-progress-tracker
+# Potato Study Progress Tracker
