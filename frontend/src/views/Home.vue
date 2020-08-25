@@ -6,16 +6,16 @@ import UserCard from '@/components/user-card.vue'
 export default {
   name: 'Home',
   components: {
-    UserCard
+    UserCard,
   },
   data() {
     return {
       users: [],
+      time: new Date(),
     }
   },
   async created() {
     const usersRequest = await axios.get('/api/users')
-
     this.users = usersRequest.data
   },
 }
@@ -24,6 +24,6 @@ export default {
 <template lang="pug">
   .home
     h1 Potato
-    user-card
-    div(v-for="user in users") {{ user.name }} has {{ user.photos.length }} photos
+    p The time is: {{ time }}
+    user-card(v-for="user in users" :user="user")
 </template>
