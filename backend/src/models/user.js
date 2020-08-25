@@ -4,45 +4,40 @@ const autopopulate = require('mongoose-autopopulate')
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
+    required: true,
+  },
+  username: {
+    type: String,
     unique: true,
     required: true,
   },
-  age: {
-    type: Number,
+  email: {
+    type: String,
+    unique: true,
     required: true,
   },
-  bio: String,
-  photos: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Photo',
-      autopopulate: true,
-    },
-  ],
-  likes: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Photo',
-    },
-  ],
 })
 
 class User {
-  async addPhoto(photo) {
-    this.photos.push(photo)
-    await this.save()
-  }
+    constructor(name, username, email) {
+        this.name = name
+        this.username = username
+        this.email = email
+        this.courses = []
+    }
 
-  async likePhoto(photo) {
-    this.likes.push(photo)
-    photo.likedBy.push(this)
+    async addCourse(course) {
+        this.courses.push(course)
+        await this.save()
+    }
 
-    await photo.save()
-    await this.save()
-  }
+    async removeCourse(course) {
+        this.courses.splice(courses.indexOf(course), 1)
+        await this.save()
+    }
 }
 
-userSchema.loadClass(User)
+userSchema.loadClass(User) // associates user class with user schema
 userSchema.plugin(autopopulate)
 
 module.exports = mongoose.model('User', userSchema)
