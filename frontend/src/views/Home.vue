@@ -7,23 +7,23 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from '@/components/hello-world.vue'
 import axios from 'axios'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    HelloWorld,
   },
   data() {
     return {
-      users: []
+      users: [],
     }
   },
   async created() {
     const usersRequest = await axios.get('/api/users')
 
     this.users = usersRequest.data
-  }
+  },
 }
 </script>
