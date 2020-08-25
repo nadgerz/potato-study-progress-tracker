@@ -19,22 +19,22 @@ const userSchema = new mongoose.Schema({
 })
 
 class User {
-    constructor(name, username, email) {
-        this.name = name
-        this.username = username
-        this.email = email
-        this.courses = []
-    }
+  constructor(name, username, email) {
+    this.name = name
+    this.username = username
+    this.email = email
+    this.courses = []
+  }
 
-    async addCourse(course) {
-        this.courses.push(course)
-        await this.save()
-    }
+  async addCourse(course) {
+    this.courses.push(course)
+    await this.save()
+  }
 
-    async removeCourse(course) {
-        this.courses.splice(courses.indexOf(course), 1)
-        await this.save()
-    }
+  async removeCourse(course) {
+    this.courses.splice(this.courses.indexOf(course), 1)
+    await this.save()
+  }
 }
 
 userSchema.loadClass(User) // associates user class with user schema
