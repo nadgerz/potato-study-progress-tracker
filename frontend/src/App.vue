@@ -1,6 +1,6 @@
 <template lang="pug">
   #app
-    h1 Picories App
+    h1 Potato App
     #nav
       router-link(to="/") Home |&nbsp;
       router-link(to="/about") About
